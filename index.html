@@ -1,202 +1,32 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title> PlingifyPlug </title>
-        <link rel="shortcut icon" href="http://www.example.com/myicon.ico"/>
-    </head>
-    <body>
-        <body style="background-color: #222229;"></body>
+<head>
+  <title>Welcome</title>
 
-            <font color="#fff"> <h2 style="font-family: Arial;"> <center> <div class="form-box">
-        <form class="form">
-            <span class="title">Sign up</span>
-            <span class="subtitle">Create a free account with your email.</span>
-            <div class="form-container">
-              <input type="text" class="input" placeholder="Full Name">
-                    <input type="email" class="input" placeholder="Email">
-                    <input type="password" class="input" placeholder="Password">
-            </div>
-             <button> <a href="https://plingifyplug.github.io/PlingifyPlug/"> Sign up </button> </a>
-        </form>
-        <div class="form-section">
-          <p> Want to continue as a guest? <a href="https://plingifyplug.github.io/PlingifyPlug/">Click here!</a> </p>
-        </div>
-        </div> </font> </center>
+</head>
+<body>
+  <form id="registrationForm">
+    <input type="email" id="emailInput" placeholder="Enter your email address">
+    <button type="submit">Register</button>
+  </form>
+  <div id="errorMessage"></div>
+</body>
+<script>
+document.getElementById('registrationForm').addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevent form submission
 
-          <style>
-a:link {
-  color: rgb(255, 255, 255);
-  background-color: transparent;
-  text-decoration: none;
-}
+  var bannedEmails = ['eo16bobs@gmail.com', '@wintoncommunityacademy.org']; // List of banned email addresses
+  var email = document.getElementById('emailInput').value;
 
-a:visited {
-  color: rgb(255, 255, 255);
-  background-color: transparent;
-  text-decoration: none;
-}
-
-a:hover {
-  color: rgb(255, 255, 255);
-  background-color: transparent;
-  text-decoration: underline;
-}
-
-a:active {
-  color: rgb(255, 255, 255);
-  background-color: transparent;
-  text-decoration: underline;
-}
-
-
-
-
-
-body {
-       
-    background-color: #fff;
-}
-.form-box {
-  max-width: 300px;
-  background: #f1f7fe;
-  overflow: hidden;
-  border-radius: 16px;
-  color: #010101;
-}
-
-.form {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  padding: 32px 24px 24px;
-  gap: 16px;
-  text-align: center;
-}
-
-/*Form text*/
-.title {
-  font-weight: bold;
-  font-size: 1.6rem;
-}
-
-.subtitle {
-  font-size: 1rem;
-  color: #666;
-}
-
-/*Inputs box*/
-.form-container {
-  overflow: hidden;
-  border-radius: 8px;
-  background-color: #fff;
-  margin: 1rem 0 .5rem;
-  width: 100%;
-}
-
-.input {
-  background: none;
-  border: 0;
-  outline: 0;
-  height: 40px;
-  width: 100%;
-  border-bottom: 1px solid #eee;
-  font-size: .9rem;
-  padding: 8px 15px;
-}
-
-.form-section {
-  padding: 16px;
-  font-size: .85rem;
-  background-color: #e0ecfb;
-  box-shadow: rgb(0 0 0 / 8%) 0 -1px;
-}
-
-.form-section a {
-  font-weight: bold;
-  color: #26282b;
-  transition: color .3s ease;
-}
-
-.form-section a:hover {
-  color: #005ce6;
-  text-decoration: underline;
-}
-
-/*Button*/
-.form button {
-  background-color: #393c3f;
-  color: #fff;
-  border: 0;
-  border-radius: 24px;
-  padding: 10px 16px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color .3s ease;
-}
-
-.form button:hover {
-  background-color: #005ce6;
-}
-
-
-
-            </style>
-
-<SCRIPT language=JavaScript>
-
-    <!-- http://www.spacegun.co.uk -->
-    
-    var message = "function disabled";
-    
-    function rtclickcheck(keyp){ if (navigator.appName == "Netscape" && keyp.which == 3){ alert(message); return false; }
-    
-    if (navigator.appVersion.indexOf("MSIE") != -1 && event.button == 2) { alert(message); return false; } }
-    
-    document.onmousedown = rtclickcheck;
-    
-    </SCRIPT>
-      
-    <script language="JavaScript">
-          
-           window.onload = function () {
-               document.addEventListener("contextmenu", function (e) {
-                   e.preventDefault();
-               }, false);
-               document.addEventListener("keydown", function (e) {
-                   //document.onkeydown = function(e) {
-                   // "I" key
-                   if (e.ctrlKey && e.shiftKey && e.keyCode == 73) {
-                       disabledEvent(e);
-                   }
-                   // "J" key
-                   if (e.ctrlKey && e.shiftKey && e.keyCode == 74) {
-                       disabledEvent(e);
-                   }
-                   // "S" key + macOS
-                   if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
-                       disabledEvent(e);
-                   }
-                   // "U" key
-                   if (e.ctrlKey && e.keyCode == 85) {
-                       disabledEvent(e);
-                   }
-                   // "F12" key
-                   if (event.keyCode == 123) {
-                       disabledEvent(e);
-                   }
-               }, false);
-               function disabledEvent(e) {
-                   if (e.stopPropagation) {
-                       e.stopPropagation();
-                   } else if (window.event) {
-                       window.event.cancelBubble = true;
-                   }
-                   e.preventDefault();
-                   return false;
-               }
-           }
-    //edit: removed ";" from last "}" because of javascript error
-    </script>
-    </body>
+  if (bannedEmails.includes(email)) {
+    // Set a ban cookie to track the banned status
+    document.cookie = 'ban_status=banned; expires=Thu, 01 Jan 2030 00:00:00 UTC; path=/';
+    document.getElementById('errorMessage').textContent = 'You are banned from accessing this website.';
+  } else {
+    // Proceed with registration or login process
+    // ...
+  }
+});
+</script>
 </html>
+
